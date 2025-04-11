@@ -22,7 +22,6 @@
 #define SERVUS_UINT128_H
 
 #include <servus/api.h>
-#include <servus/serializable.h>
 #include <servus/types.h>
 
 #include <sstream>
@@ -46,15 +45,14 @@ std::ostream& operator<<(std::ostream& os, const uint128_t& id);
  *
  * Example: @include tests/uint128_t.cpp
  */
-class uint128_t : public Serializable
+class uint128_t
 {
 public:
     /**
      * Construct a new 128 bit integer with a default value.
      */
     explicit uint128_t(const unsigned long long low_ = 0)
-        : Serializable()
-        , _high(0)
+        : _high(0)
         , _low(low_)
     {
     }
@@ -63,8 +61,7 @@ public:
      * Construct a new 128 bit integer with a default value.
      */
     explicit uint128_t(const unsigned long low_)
-        : Serializable()
-        , _high(0)
+        : _high(0)
         , _low(low_)
     {
     }
@@ -73,8 +70,7 @@ public:
      * Construct a new 128 bit integer with a default value.
      */
     explicit uint128_t(const int low_)
-        : Serializable()
-        , _high(0)
+        : _high(0)
         , _low(low_)
     {
     }
@@ -83,8 +79,7 @@ public:
      * Construct a new 128 bit integer with default values.
      */
     uint128_t(const servus::uint128_t& rhs)
-        : Serializable()
-        , _high(rhs._high)
+        : _high(rhs._high)
         , _low(rhs._low)
     {
     }
@@ -288,8 +283,6 @@ public:
         ar& high();
     }
 
-    virtual std::string getTypeName() const { return "servus::uint128_t"; }
-
 private:
     uint64_t _high;
     uint64_t _low;
@@ -383,7 +376,7 @@ inline uint128_t make_uint128(const std::string& string)
  * identifier.
  */
 SERVUS_API uint128_t make_UUID();
-} // namespace servus
+}
 
 namespace std
 {
@@ -403,6 +396,6 @@ inline string to_string(const servus::uint128_t& value)
 {
     return value.getString();
 }
-} // namespace std
+}
 
 #endif // SERVUS_UINT128_H
