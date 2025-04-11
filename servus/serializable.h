@@ -25,7 +25,6 @@
 
 #include <functional> // function
 #include <memory>     // shared_ptr
-#include <stdexcept>  // standard exceptions
 
 namespace servus
 {
