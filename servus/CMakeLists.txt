@@ -41,6 +41,9 @@ set(SERVUS_SOURCES
   uri.cpp
   )
 
+# Fix for CMP0100 policy warning - exclude md5.hh from AUTOMOC processing
+set_property(SOURCE md5/md5.hh PROPERTY SKIP_AUTOGEN ON)
+
 list(APPEND SERVUS_LINK_LIBRARIES PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 if(MSVC)
   list(APPEND SERVUS_LINK_LIBRARIES ws2_32)
